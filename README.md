@@ -1,4 +1,4 @@
-# Metastability
+# Metastability / Itinerancy / Quasi attractors / State transitions
  Dynamical complexity in ensembles of bursting oscillators
  
  This package contains a .cpp to simulate networks of spiking/bursting Izhikevich neurons and .m scripts for post-simulation analysis.
