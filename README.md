@@ -14,7 +14,8 @@
   - measure dynamical complexity
   
  For more details refer to this article:
- Itinerant complexity in networks of intrinsically bursting neurons
+ Itinerant complexity in networks of intrinsically bursting neurons.
+ 
  Siva Venkadesh, Ernest Barreto*, Giorgio A. Ascoli* 
  *Co-senior authors
  BioRxiv. Mar 23, 2020. doi: https://doi.org/10.1101/2020.03.22.002170
