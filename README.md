@@ -1,4 +1,4 @@
-# Metastability / Itinerancy / Quasi attractors / State transitions
+# Metastable attractors / Itinerant Chimeras 
  Dynamical complexity in ensembles of bursting oscillators
  
  This package contains a .cpp to simulate networks of spiking/bursting Izhikevich neurons and .m scripts for post-simulation analysis.
@@ -11,7 +11,8 @@
   - measure synchrony/stability among pairs of oscillators
   - plot distributions of stability 
   - construct state transition matrix at the level of individual pairs
-  - measure dynamical complexity
+  - detect and analyze coherent domains of itinerant chimeras
   
- For more details refer to this article:
- ***coming soon****
+For more details refer to this article: Itinerant complexity in networks of intrinsically bursting neurons.
+
+Siva Venkadesh, Ernest Barreto*, Giorgio A. Ascoli* (*Co-senior authors) BioRxiv. Mar 23, 2020. doi: https://doi.org/10.1101/2020.03.22.002170

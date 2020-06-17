@@ -19,11 +19,12 @@ scale=100; %total number of neurons in the network
 n_pairs= 1; %space
 start=5000; %time onset
 finish=120000; %time offset
+window_length=500; %delta t
 
 N_window_sequences= floor((finish-start)/window_length);    
 %
 for pair=1:100
-    pp=pair
+    %pp=pair
     nrns_1 = pairs(pair,1);
     nrns_2 = pairs(pair,2);
     %
@@ -32,7 +33,7 @@ for pair=1:100
     mode=9;    
     for window=1:N_window_sequences     
         sim_dur=hil_start + 100 + (window_length);          
-        [syncny modes n_syncs] = measure_sync(periodicity, sim_dat_file, scale, hil_start, sim_dur, n_pairs, nrns_1, nrns_2);          
+        [syncny, modes, n_syncs] = measure_sync(periodicity, sim_dat_file, scale, hil_start, sim_dur, n_pairs, nrns_1, nrns_2);          
         all_window_modes(window)=modes(1);%
         hil_start= hil_start + window_length;
     end
@@ -55,22 +56,11 @@ for pair=1:100
     %filter 0s (tail)
     all_stable_durs = all_stable_durs(all_stable_durs~=0);
     all_stable_modes = all_stable_modes(1:length(all_stable_durs));
-    if record_locked_modes==1
-        %filter 9s    
-        all_stable_modes_no9s=all_stable_modes(find(all_stable_modes~=9));
-        all_stable_durs_no9s = all_stable_durs(find(all_stable_modes~=9));
+    %filter 9s    
+    all_stable_modes_no9s=all_stable_modes(all_stable_modes~=9);
+    all_stable_durs_no9s = all_stable_durs(all_stable_modes~=9);
 
-        fname_id=strcat(num2str(nrns_1), '_', num2str(nrns_2));
-        csvwrite(strcat(state_seq_dir, fname_id, '.csv'),[all_stable_modes_no9s; all_stable_durs_no9s]');
-    else
-        all_switching_modes_9s=all_stable_modes(find(all_stable_modes==9));
-        all_switching_durs_9s = all_stable_durs(find(all_stable_modes==9));
-
-        if length(all_switching_modes_9s)==0
-            all_switching_modes_9s=9;
-            all_switching_durs_9s=0;
-        end
-        fname_id=strcat(num2str(nrns_1), '_', num2str(nrns_2));
-        csvwrite(strcat(state_seq_dir, fname_id, '_trans_durs.csv'),[all_switching_modes_9s; all_switching_durs_9s]');
-    end
+    fname_id=strcat(num2str(nrns_1), '_', num2str(nrns_2));
+    csvwrite(strcat(state_seq_dir, fname_id, '.csv'),[all_stable_modes_no9s; all_stable_durs_no9s]');
+    
 end

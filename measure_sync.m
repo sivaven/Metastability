@@ -1,4 +1,4 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Measures synchrony/stability among random unique pairs and for a duration
 % 
 %
@@ -15,17 +15,20 @@
 %
 % Returns synchrony/stability measures in [0 1] and the average phase difference
 % Returns the number of pairs that were deemed to be stable
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% This function requires CARLsim OAT to extract spike times:
+%          http://uci-carl.github.io/CARLsim4/ch9_matlab_oat.html#ch9s5_reading_raw_data
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 function [synchrony, modes, n_syncs]=measure_sync(periodicity, sim_dat_file, scale, hil_start, duration, n_pairs, nrns1, nrns2)
     %nrns_1 = randi([0 49], 1, n_pairs);
     %nrns_2 = randi([50 99], 1, n_pairs); 
-    if length(nrns1)==0
+    if isempty(nrns1)
         nrns_1 = randperm(scale/2, n_pairs)-1;
     else
         nrns_1 = nrns1;
     end
-    if length(nrns2)==0
+    if isempty(nrns2)
         nrns_2 = randperm(scale/2, n_pairs)-1 +scale/2;
     else
         nrns_2 = nrns2;
@@ -63,8 +66,8 @@ function [synchrony, modes, n_syncs]=measure_sync(periodicity, sim_dat_file, sca
     for idx=1:n_pairs
         nrn1=nrns_1(idx);
         nrn2=nrns_2(idx);
-        spike_times1 = spk_inh(1, find(temp==nrn1));
-        spike_times2 = spk_inh(1, find(temp==nrn2));
+        spike_times1 = spk_inh(1, temp==nrn1);
+        spike_times2 = spk_inh(1, temp==nrn2);
 
         spikes1=-ones(1,duration);
         spikes1(spike_times1)=1;
