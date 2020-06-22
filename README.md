@@ -18,4 +18,5 @@
  
  Siva Venkadesh, Ernest Barreto*, Giorgio A. Ascoli* 
  (*Co-senior authors)
- BioRxiv. Mar 23, 2020. doi: https://doi.org/10.1101/2020.03.22.002170
+ Chaos 30, 061106 (2020)
+ https://doi.org/10.1063/5.0010334
