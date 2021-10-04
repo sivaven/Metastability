@@ -1,3 +1,5 @@
+*** A cleaner, Python implementation of these functionalities available upon request ***
+
 # Metastable attractors / Itinerant Chimeras 
  Dynamical complexity in ensembles of bursting oscillators
  
